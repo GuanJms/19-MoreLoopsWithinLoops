@@ -4,8 +4,8 @@ in the context of TWO-DIMENSIONAL GRAPHICS.
 
 Authors: David Mutchler, Vibha Alangar, Matt Boutell, Dave Fisher,
          Mark Hays, Amanda Stouder, Aaron Wilkin, their colleagues,
-         and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         and Shengjun Guan.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 import rosegraphics as rg
 
@@ -53,6 +53,35 @@ def draw_upside_down_wall(rectangle, n, window):
     # TODO: 2. Implement and test this function.
     #     Some tests are already written for you (above).
     # -------------------------------------------------------------------------
+    upper_point_x = rectangle._upper_left_corner.x - 0.5 * rectangle.get_width() * (n-1)
+    upper_point_y = rectangle._upper_left_corner.y -   rectangle.get_height() * (n-1)
+    lower_point_x = rectangle._lower_right_corner.x - 0.5 * rectangle.get_width() * (n-1)
+    lower_point_y = rectangle._lower_right_corner.y -  rectangle.get_height() * (n-1)
+
+    x1 = upper_point_x
+    y1 = upper_point_y
+    x2 = lower_point_x
+    y2 =lower_point_y
+
+    for i in range(n):
+        for j in range(i):
+            x1 = x1 + rectangle.get_width()*0.5
+            x2 = x2 + rectangle.get_width()*0.5
+
+        for k in range(n-i+1):
+            rec = rg.Rectangle(rg.Point(x1, y1),rg.Point(x2, y2))
+            rec.outline_thickness = rectangle.outline_thickness
+            rec.attach_to(window)
+            window.render()
+            x1 = x1 + rectangle.get_width()
+
+
+        x1 = upper_point_x
+        x2 = lower_point_x
+        y1 = y1 + rectangle.get_height()
+        y2 = y2 + rectangle.get_height()
+
+
 
 
 # -----------------------------------------------------------------------------
