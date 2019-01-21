@@ -4,8 +4,8 @@ in the context of SEQUENCES OF SUB-SEQUENCES.
 
 Authors: David Mutchler, Vibha Alangar, Matt Boutell, Dave Fisher,
          Mark Hays, Amanda Stouder, Aaron Wilkin, their colleagues,
-         and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         and Shengjun Guan.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 
 def main():
@@ -18,7 +18,7 @@ def main():
 def run_test_largest_number():
     """ Tests the    largest_number    function. """
     # -------------------------------------------------------------------------
-    # TODO: 2. Implement this TEST function.
+    # DONE: 2. Implement this TEST function.
     #   It TESTS the  largest_number  function defined below.
     #   Include at least ** 1 ** ADDITIONAL test beyond those we wrote.
     # -------------------------------------------------------------------------
@@ -44,7 +44,12 @@ def run_test_largest_number():
     answer = largest_number(([], [], []))
     print('Expected and actual are:', expected, answer)
 
-    # TODO 2 (continued): Add your ADDITIONAL test(s) here:
+    # DONE 2 (continued): Add your ADDITIONAL test(s) here:
+
+    # Test 2:
+    expected = -23452345
+    answer = largest_number(([], [-23452345], []))
+    print('Expected and actual are:', expected, answer)
 
 
 def largest_number(seq_seq):
@@ -73,9 +78,18 @@ def largest_number(seq_seq):
     where each subsequence contains only numbers.
     """
     # -------------------------------------------------------------------------
-    # TODO: 3. Implement and test this function.
+    # DONE: 3. Implement and test this function.
     #   Note that you should write its TEST function first (above).
     # -------------------------------------------------------------------------
+    x = None
+    for item1 in seq_seq:
+        for item2 in item1:
+            if type(item2) == int and x == None:
+                x = item2
+            if type(item2) == int and item2 >= x:
+                x = item2
+    return x
+
 
 
 def run_test_largest_negative_number():
@@ -91,6 +105,14 @@ def run_test_largest_negative_number():
     print('-------------------------------------------------')
     print('Testing the   LARGEST_NEGATIVE_NUMBER   function:')
     print('-------------------------------------------------')
+
+    # Test 1:
+    expected = -2.6
+    answer = largest_number([(30, -5, 8, -20),
+         (100, -2.6, 88, -40, -5),
+         (400, 500)
+        ])
+    print('Expected and actual are:', expected, answer)
 
 
 def largest_negative_number(seq_seq):
@@ -123,6 +145,17 @@ def largest_negative_number(seq_seq):
     #   being constructed (so the SPACE allowed is limited to the
     #   give sequence of sequences plus any non-list variables you want).
     # -------------------------------------------------------------------------
+
+    x = None
+    for item1 in seq_seq:
+        for item2 in item1:
+            if type(item2) == int or type(item2) == float:
+                if item2 < 0 and x == None:
+                    x = item2
+            if type(item2) == int or type(item2)== float:
+                if item2 < 0 and item2 >= x:
+                    x = item2
+    return x
 
 
 def run_test_first_is_elsewhere_too():
